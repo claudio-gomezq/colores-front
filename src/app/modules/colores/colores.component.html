@@ -1,0 +1,10 @@
+<div *ngIf="(coloresObservable$ | async) as colores">
+  <mat-paginator [length]="colores.totalItems"
+                 (page)="onSelectPage($event)"
+                 [pageSizeOptions]="[6, 12, 24]">
+  </mat-paginator>
+  <app-colores-list [colores]="colores.items"></app-colores-list>
+</div>
+<button mat-fab class="add-button">
+  <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,21 @@
+<mat-card fxLayout="column" class="color-card mat-elevation-z2">
+  <span class="year">{{color.year}}</span>
+  <div fxLayout="column" fxFlexAlign="center" class="name-container">
+    <span class="color-name">{{color.name}}</span>
+    <span class="color">{{color.color}}</span>
+  </div>
+  <div fxLayout="row">
+    <div>
+      <button mat-icon-button matTooltip="Copiar color">
+        <mat-icon color="primary">content_copy</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Editar color">
+        <mat-icon color="primary">edit</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Eliminar color">
+        <mat-icon color="primary">delete</mat-icon>
+      </button>
+    </div>
+    <span class="pantone" fxFlexAlign="end">{{color.pantone}}</span>
+  </div>
+</mat-card>
