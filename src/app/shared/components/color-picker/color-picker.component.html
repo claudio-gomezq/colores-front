@@ -1,0 +1,21 @@
+<button mat-icon-button type="button">
+  <mat-icon cdkOverlayOrigin
+            class="icon-picker"
+            [style.color]="value"
+            #trigger="cdkOverlayOrigin"
+            (click)="clickColor()">
+    palette
+  </mat-icon>
+</button>
+<ng-template
+  cdkConnectedOverlay
+  #overlay="cdkConnectedOverlay"
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayOpen]="showColorPicker">
+
+  <color-chrome [color]="value"
+                [disableAlpha]="true"
+                (onChange)="onColorChange($event)"></color-chrome>
+</ng-template>

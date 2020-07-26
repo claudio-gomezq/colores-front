@@ -1,5 +1,10 @@
-<div fxLayout="row wrap" fxLayoutAlign="space-between start" class="color-container">
-  <app-color-item fxFlex="33" fxFlex.xs="100"
-                  *ngFor="let item of colores"
+<div fxLayout="row wrap" class="color-container">
+  <app-color-item fxFlex.xs="100"
+                  fxFlex.lt-md="50"
+                  fxFlex="33"
+                  *ngFor="let item of colores; trackBy: trackByFn"
+                  (copy)="copyColor($event)"
+                  (edit)="editItem.emit($event)"
+                  (delete)="deleteItem.emit($event)"
                   [color]="item"></app-color-item>
 </div>

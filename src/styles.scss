@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 @import "src/app/theme";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .responsive-dialog {
+    width: 100% !important;
+    height: 100vh !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+
+    mat-dialog-container > * {
+      display: flex;
+      height: 100%;
+      flex-flow: column nowrap;
+
+      mat-dialog-actions {
+        margin-top: auto;
+      }
+    }
+  }
+}
+
+.responsive-dialog {
+  width: 50%;
+  height: auto;
+}
+

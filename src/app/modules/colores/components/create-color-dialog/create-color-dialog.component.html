@@ -1,0 +1,14 @@
+<!--suppress HtmlDeprecatedAttribute -->
+<h2 mat-dialog-title>Crear nuevo color</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="createColorForm">
+    <app-color-form formControlName="color"></app-color-form>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <app-loading-button (click)="create()"
+                      [disabled]="createColorForm.invalid"
+                      text="Crear"
+                      [loading]="loading"></app-loading-button>
+</mat-dialog-actions>

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 import {ColoresComponent} from './colores.component';
 import {MaterialModule} from "../../material.module";
@@ -9,9 +10,9 @@ import {ColoresListComponent} from './components/colores-list/colores-list.compo
 import {ColorFormComponent} from './components/color-form/color-form.component';
 import {CreateColorDialogComponent} from './components/create-color-dialog/create-color-dialog.component';
 import {ColorItemComponent} from "./components/color-item/color-item.component";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig} from "@angular/material/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { EditColorDialogComponent } from './components/edit-color-dialog/edit-color-dialog.component';
+import { DeleteColorDialogComponent } from './components/delete-color-dialog/delete-color-dialog.component';
 
 const routes: Routes = [
   {path: '', component: ColoresComponent},
@@ -23,7 +24,9 @@ const routes: Routes = [
     ColoresListComponent,
     ColorFormComponent,
     CreateColorDialogComponent,
-    ColorItemComponent
+    ColorItemComponent,
+    EditColorDialogComponent,
+    DeleteColorDialogComponent
   ],
   imports: [
     CommonModule,
@@ -32,10 +35,12 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   entryComponents: [
-    CreateColorDialogComponent
+    CreateColorDialogComponent,
+    EditColorDialogComponent,
+    DeleteColorDialogComponent
   ],
 })
 export class ColoresModule {

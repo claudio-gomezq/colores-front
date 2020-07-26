@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -9,11 +9,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {
-  MAT_COLOR_FORMATS,
-  NGX_MAT_COLOR_FORMATS,
-  NgxMatColorPickerModule
-} from "@angular-material-components/color-picker";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   imports: [
@@ -27,7 +24,8 @@ import {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    NgxMatColorPickerModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -40,10 +38,9 @@ import {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    NgxMatColorPickerModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
-  providers: [
-    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
-  ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+}

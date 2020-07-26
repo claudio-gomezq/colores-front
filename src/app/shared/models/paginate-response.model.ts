@@ -1,4 +1,4 @@
-export default interface PaginateResponse<M> {
+export default interface PaginateResponseModel<M> {
   items: M[];
   totalPages: number;
   currentPage: number;

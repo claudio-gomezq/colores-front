@@ -1,18 +1,27 @@
 <mat-card fxLayout="column" class="color-card mat-elevation-z2">
-  <span class="year">{{color.year}}</span>
+  <div fxLayout="row">
+    <span class="year">{{color.year}}</span>
+
+    <span class="circle-color mat-elevation-z1"
+          [style.backgroundColor]="color.color">
+    </span>
+  </div>
   <div fxLayout="column" fxFlexAlign="center" class="name-container">
     <span class="color-name">{{color.name}}</span>
     <span class="color">{{color.color}}</span>
   </div>
   <div fxLayout="row">
     <div>
-      <button mat-icon-button matTooltip="Copiar color">
+      <button mat-icon-button (click)="onCopy()"
+              matTooltip="Copiar color">
         <mat-icon color="primary">content_copy</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Editar color">
+      <button mat-icon-button (click)="onEdit()"
+              matTooltip="Editar color">
         <mat-icon color="primary">edit</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Eliminar color">
+      <button mat-icon-button (click)="onDelete()"
+              matTooltip="Eliminar color">
         <mat-icon color="primary">delete</mat-icon>
       </button>
     </div>
