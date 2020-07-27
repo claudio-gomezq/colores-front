@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import ColorModel from "../../../../shared/models/color.model";
+import Color from "../../../../shared/models/color";
+import {AuthService} from "../../../../core/services/auth.service";
 
 @Component({
   selector: 'app-color-item[color]',
@@ -8,13 +9,13 @@ import ColorModel from "../../../../shared/models/color.model";
 })
 export class ColorItemComponent implements OnInit {
 
-  @Input() color: ColorModel;
+  @Input() color: Color;
 
   @Output() edit = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
-  @Output() copy = new EventEmitter<ColorModel>();
+  @Output() copy = new EventEmitter<Color>();
 
-  constructor() {
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit(): void {

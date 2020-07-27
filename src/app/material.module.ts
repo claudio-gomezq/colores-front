@@ -11,6 +11,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatInputModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
   ],
   exports: [
     MatToolbarModule,
@@ -39,7 +41,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule,
   ],
 })
 export class MaterialModule {

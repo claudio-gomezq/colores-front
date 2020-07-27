@@ -1,0 +1,58 @@
+<!--suppress HtmlDeprecatedAttribute -->
+<h2 mat-dialog-title>Registrase</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="f" fxLayout="column">
+    <mat-form-field fxFlex="100">
+      <mat-label>Nombre</mat-label>
+      <input matInput type="text" formControlName="name">
+      <mat-error *ngIf="f.get('email').hasError('required')">
+        El nombre es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="f.get('email').hasError('required')">
+        El email es requerido
+      </mat-error>
+      <mat-error *ngIf="f.get('email').hasError('pattern')">
+        El formato del email es incorrecto
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="f.get('password').hasError('required')">
+        La contraseña es requerida
+      </mat-error>
+      <mat-error *ngIf="f.get('password').hasError('minLength')">
+        La contraseña debe tener un minimo 6 caracteres
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Confirmar contraseña</mat-label>
+      <input matInput type="password"
+             formControlName="confirmPassword">
+      <mat-error *ngIf="f.get('confirmPassword').hasError('required')">
+        La contraseña de confirmación es requerida
+      </mat-error>
+      <mat-error *ngIf="f.get('confirmPassword').hasError('notMatch')">
+        Las contraseñas no coinciden
+      </mat-error>
+    </mat-form-field>
+    <mat-radio-group color="primary" formControlName="type"
+                     fxLayout="row"  fxFlex="100" >
+      <mat-radio-button value="normal"
+                        fxFlex="20">Normal</mat-radio-button>
+      <mat-radio-button value="admin"
+                        fxFlex="20">Admin</mat-radio-button>
+    </mat-radio-group>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <app-loading-button text="Registrarse"
+                      [disabled]="f.invalid"
+                      (click)="register()"
+                      [loading]="loading"></app-loading-button>
+</mat-dialog-actions>

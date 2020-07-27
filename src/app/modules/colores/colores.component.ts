@@ -4,13 +4,15 @@ import {PageEvent} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 
 import PaginateResponseModel from "../../shared/models/paginate-response.model";
-import ColorModel from "../../shared/models/color.model";
+import Color from "../../shared/models/color";
 import {ColoresPaginationService} from "../../core/services/colores-pagination.service";
 import {CreateColorDialogComponent} from "./components/create-color-dialog/create-color-dialog.component";
 import {
   EditColorDialogComponent
 } from "./components/edit-color-dialog/edit-color-dialog.component";
 import {DeleteColorDialogComponent} from "./components/delete-color-dialog/delete-color-dialog.component";
+import {AuthService} from "../../core/services/auth.service";
+import {LoginDialogComponent} from "../auth/components/login-dialog/login-dialog.component";
 
 @Component({
   selector: 'app-colores',
@@ -19,11 +21,12 @@ import {DeleteColorDialogComponent} from "./components/delete-color-dialog/delet
 })
 export class ColoresComponent implements OnInit {
 
-  public coloresObservable$: Observable<PaginateResponseModel<ColorModel>>;
+  public coloresObservable$: Observable<PaginateResponseModel<Color>>;
 
   public currentPage$: Observable<number>;
 
   constructor(private coloresPaginationService: ColoresPaginationService,
+              public authService: AuthService,
               private dialog: MatDialog) {
   }
 
@@ -35,6 +38,12 @@ export class ColoresComponent implements OnInit {
   onSelectPage(event: PageEvent) {
     this.coloresPaginationService.moveToPage(event.pageIndex + 1);
     this.coloresPaginationService.changePageSize(event.pageSize);
+  }
+
+  openLoginDialog(){
+    this.dialog.open(LoginDialogComponent, {
+      panelClass: 'responsive-dialog',
+    });
   }
 
   openCreateDialog(): void {

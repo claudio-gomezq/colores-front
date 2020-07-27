@@ -1,0 +1,30 @@
+<!--suppress HtmlDeprecatedAttribute -->
+<h2 mat-dialog-title>Iniciar sesión</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="f" fxLayout="column">
+    <mat-form-field fxFlex="100">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="f.get('email').hasError('required')">
+        El email es requerido
+      </mat-error>
+      <mat-error *ngIf="f.get('email').hasError('pattern')">
+        El formato del email es incorrecto
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="f.get('password').hasError('required')">
+        La contraseña es requerida
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <app-loading-button text="Iniciar sesión"
+                      [disabled]="f.invalid"
+                      (click)="login()"
+                      [loading]="loading"></app-loading-button>
+</mat-dialog-actions>

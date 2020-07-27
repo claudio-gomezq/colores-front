@@ -19,10 +19,12 @@ body {
     margin-left: 0 !important;
     margin-top: 0 !important;
 
+
     mat-dialog-container > * {
       display: flex;
       height: 100%;
       flex-flow: column nowrap;
+
 
       mat-dialog-actions {
         margin-top: auto;
@@ -34,5 +36,24 @@ body {
 .responsive-dialog {
   width: 50%;
   height: auto;
+
+  mat-dialog-container > * > mat-dialog-content {
+    overflow: inherit !important;
+    width: 100%;
+  }
+
+}
+
+.text-center {
+  text-align: center;
+}
+
+.snackbar-error {
+  background-color: #d50000;
+  color: #fff;
+
+  .mat-button {
+    color: #fff;
+  }
 }
 

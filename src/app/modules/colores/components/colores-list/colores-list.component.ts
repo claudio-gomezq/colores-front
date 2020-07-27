@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Clipboard} from "@angular/cdk/clipboard";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import ColorModel from "../../../../shared/models/color.model";
+import Color from "../../../../shared/models/color";
+import {MessageService} from "../../../../core/services/message.service";
 
 @Component({
   selector: 'app-colores-list',
@@ -9,27 +10,25 @@ import ColorModel from "../../../../shared/models/color.model";
   styleUrls: ['./colores-list.component.scss']
 })
 export class ColoresListComponent implements OnInit {
-  @Input() colores: ColorModel[];
+  @Input() colores: Color[];
 
   @Output() editItem = new EventEmitter<number>();
   @Output() deleteItem = new EventEmitter<number>();
 
   constructor(private clipboard: Clipboard,
-              private snackBar: MatSnackBar) { }
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
 
-  copyColor(event: ColorModel){
+  copyColor(event: Color){
     const success = this.clipboard.copy(event.color)
     if(success){
-      this.snackBar.open('ColorModel copiado!', 'Cerrar', {
-        duration: 800
-      });
+      this.messageService.showInfo('Color copiado al portapapeles!');
     }
   }
 
-  trackByFn(index, item: ColorModel) {
+  trackByFn(index, item: Color) {
     return item.id;
   }
 

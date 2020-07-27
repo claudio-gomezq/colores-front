@@ -1,13 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material.module";
-import {FlexLayoutModule} from "@angular/flex-layout";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatDialogModule} from "@angular/material/dialog";
+import {AuthHttpInterceptorService} from "./core/interceptors/auth-http-interceptor.service";
+import {AuthModule} from "./modules/auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -19,9 +20,13 @@ import {MatDialogModule} from "@angular/material/dialog";
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    AuthModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

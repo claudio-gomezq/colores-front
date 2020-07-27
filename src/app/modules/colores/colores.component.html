@@ -1,13 +1,44 @@
 <div *ngIf="(coloresObservable$ | async) as colores">
-  <mat-paginator [length]="colores.totalItems"
-                 (page)="onSelectPage($event)"
-                 [pageIndex]="(currentPage$ | async) - 1"
-                 [pageSizeOptions]="[6, 12, 24]">
-  </mat-paginator>
-  <app-colores-list [colores]="colores.items"
-                    (editItem)="openEditDialog($event)"
-                    (deleteItem)="openDeleteDialog($event)"></app-colores-list>
+
+  <ng-container *ngIf="colores.totalItems > 0">
+    <mat-paginator [length]="colores.totalItems"
+                   (page)="onSelectPage($event)"
+                   [pageIndex]="(currentPage$ | async) - 1"
+                   [pageSizeOptions]="[6, 12, 24]">
+    </mat-paginator>
+    <app-colores-list [colores]="colores.items"
+                      (editItem)="openEditDialog($event)"
+                      (deleteItem)="openDeleteDialog($event)"></app-colores-list>
+
+  </ng-container>
+
+  <ng-container *ngIf="colores.totalItems === 0">
+    <div class="create-color-info-container mat-typography"
+         fxLayout="column" fxLayoutAlign="center center">
+      <h2 class="text-center">
+        Aun no se han creado colores
+      </h2>
+      <ng-container *ngIf="authService.isAdmin">
+        <button mat-raised-button color="accent"
+                (click)="openCreateDialog()">
+          Crear Color
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!authService.isAdmin">
+        <h2 class="text-center">
+          Inicia sesión como administrador para crear colores
+        </h2>
+        <button mat-raised-button
+                color="primary"
+                (click)="openLoginDialog()">
+          Iniciar Sesión
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
 </div>
-<button mat-fab class="add-button" (click)="openCreateDialog()">
+<button *ngIf="authService.isAdmin"
+        mat-fab class="add-button"
+        (click)="openCreateDialog()">
   <mat-icon>add</mat-icon>
 </button>

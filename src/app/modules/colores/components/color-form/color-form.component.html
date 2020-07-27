@@ -8,15 +8,15 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>ColorModel</mat-label>
+    <mat-label>Color</mat-label>
     <input matInput formControlName="color" maxlength="7">
 
     <app-color-picker matSuffix [control]="f.get('color')"></app-color-picker>
     <mat-error *ngIf="f.get('color').hasError('required')">
-      El ColorModel es requerido
+      El color es requerido
     </mat-error>
-    <mat-error *ngIf="f.get('color').hasError('hexColor')">
-      El formato del ColorModel es incorrecto
+    <mat-error *ngIf="f.get('color').hasError('pattern')">
+      El formato del Color es incorrecto
     </mat-error>
   </mat-form-field>
   <mat-form-field fxFlex="100">

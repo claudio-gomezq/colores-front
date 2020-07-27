@@ -9,7 +9,7 @@ import {
   Validators
 } from "@angular/forms";
 
-import ColorModel from "../../../../shared/models/color.model";
+import Color from "../../../../shared/models/color";
 
 
 @Component({
@@ -31,14 +31,14 @@ import ColorModel from "../../../../shared/models/color.model";
 })
 export class ColorFormComponent implements OnInit, ControlValueAccessor {
 
-  @Input() color: ColorModel;
+  @Input() color: Color;
   private form: FormGroup;
 
-  get value(): ColorModel {
+  get value(): Color {
     return this.form.value;
   }
 
-  set value(value: ColorModel) {
+  set value(value: Color) {
     this.form.setValue(value);
     this.onChange(value);
     this.onTouched();
@@ -52,7 +52,7 @@ export class ColorFormComponent implements OnInit, ControlValueAccessor {
 
     this.form = this.fb.group({
       name: [this.color?.name ?? '', [Validators.required]],
-      color: [this.color?.color ?? '', [Validators.required, hexColorValidator]],
+      color: [this.color?.color ?? '', [Validators.required, Validators.pattern(HEX_COLOR_REGEX)]],
       pantone: [this.color?.pantone ?? '', []],
       year: [
         this.color?.year ?? '',
@@ -100,14 +100,6 @@ export class ColorFormComponent implements OnInit, ControlValueAccessor {
     return this.form.valid ? null : {color: {valid: false},};
   }
 
-}
-
-function hexColorValidator(control: AbstractControl): { [key: string]: any } | null {
-  if (!control.value) {
-    return null;
-  }
-  const valid = HEX_COLOR_REGEX.test(control.value);
-  return valid ? null : {'hexColor': {value: control.value}};
 }
 
 const HEX_COLOR_REGEX = /^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$/;

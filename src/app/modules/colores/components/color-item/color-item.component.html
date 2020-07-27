@@ -1,4 +1,4 @@
-<mat-card fxLayout="column" class="color-card mat-elevation-z2">
+<mat-card fxLayout="column" class="color-card mat-elevation-z2 mat-typography">
   <div fxLayout="row">
     <span class="year">{{color.year}}</span>
 
@@ -16,14 +16,16 @@
               matTooltip="Copiar color">
         <mat-icon color="primary">content_copy</mat-icon>
       </button>
-      <button mat-icon-button (click)="onEdit()"
-              matTooltip="Editar color">
-        <mat-icon color="primary">edit</mat-icon>
-      </button>
-      <button mat-icon-button (click)="onDelete()"
-              matTooltip="Eliminar color">
-        <mat-icon color="primary">delete</mat-icon>
-      </button>
+      <ng-container *ngIf="authService.isAdmin">
+        <button mat-icon-button (click)="onEdit()"
+                matTooltip="Editar color">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onDelete()"
+                matTooltip="Eliminar color">
+          <mat-icon color="primary">delete</mat-icon>
+        </button>
+      </ng-container>
     </div>
     <span class="pantone" fxFlexAlign="end">{{color.pantone}}</span>
   </div>

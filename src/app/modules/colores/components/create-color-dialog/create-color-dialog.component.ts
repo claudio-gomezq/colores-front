@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {MatDialogRef} from "@angular/material/dialog";
 
 import {ColoresHttpService} from "../../../../core/http/colores-http.service";
-import {createColor} from "../../../../shared/models/color.model";
+import {createColor} from "../../../../shared/models/color";
 
 @Component({
   selector: 'app-create-color-dialog',

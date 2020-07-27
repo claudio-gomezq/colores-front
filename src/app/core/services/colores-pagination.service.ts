@@ -3,7 +3,7 @@ import {BehaviorSubject, combineLatest} from "rxjs";
 import {switchMap} from "rxjs/operators";
 import {ColoresHttpService} from "../http/colores-http.service";
 import PaginateResponseModel from "../../shared/models/paginate-response.model";
-import ColorModel from "../../shared/models/color.model";
+import Color from "../../shared/models/color";
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import ColorModel from "../../shared/models/color.model";
 })
 export class ColoresPaginationService {
 
-  private coloresResponse = new BehaviorSubject<PaginateResponseModel<ColorModel>>(null);
+  private coloresResponse = new BehaviorSubject<PaginateResponseModel<Color>>(null);
   public coloresObservable$ = this.coloresResponse.asObservable();
 
   private currentPageSubject = new BehaviorSubject<number>(1);
@@ -44,7 +44,7 @@ export class ColoresPaginationService {
    * Este metodo se utiliza para refrescar la pagina cuando exista una actualizacion en la lista
    * (crear, eliminar o editar).
    */
-  public refreshPage(action: ActionRefresh, color?: ColorModel) {
+  public refreshPage(action: ActionRefresh, color?: Color) {
 
     switch (action) {
       case 'add':
@@ -80,7 +80,7 @@ export class ColoresPaginationService {
     this.currentPageSize.next(size);
   }
 
-  private addItem(color: ColorModel, colores: ColorModel[]) {
+  private addItem(color: Color, colores: Color[]) {
     this.coloresResponse.next({
       ...this.coloresResponse.value,
       totalItems: this.coloresResponse.value.totalItems + 1,
@@ -88,7 +88,7 @@ export class ColoresPaginationService {
     });
   }
 
-  private updateItem(color: ColorModel, colores: ColorModel[]) {
+  private updateItem(color: Color, colores: Color[]) {
     this.coloresResponse.next({
       ...this.coloresResponse.value,
       items: [...colores.map(item => item.id === color.id ? color : item)]
